@@ -10,6 +10,7 @@ package net.sf.robocode.host.jarjar;
 
 import org.junit.Test;
 import org.junit.Assert;
+import org.junit.Assume;
 
 import java.io.File;
 import java.net.URL;
@@ -21,6 +22,7 @@ import java.io.InputStreamReader;
 
 import net.sf.robocode.io.URLJarCollector;
 import net.sf.robocode.io.JarJar;
+import net.sf.robocode.util.JavaVersion;
 
 
 /**
@@ -34,8 +36,13 @@ public class JarJarTest {
 		}
 	}
 
+	private void assumeSupportedJdk() {
+		Assume.assumeTrue("JarJarTest is not compatible with JDK 25+", JavaVersion.getJavaMajorVersion() < 25);
+	}
+
 	@Test
 	public void run() throws IOException {
+		assumeSupportedJdk();
 
 		String clas = "Hello.class";
 		String inner = "Inner.jar";
@@ -62,6 +69,8 @@ public class JarJarTest {
 
 	@Test
 	public void runClassLoader() throws IOException, ClassNotFoundException {
+		assumeSupportedJdk();
+
 		String clas = "tested.robots.Ahead";
 		String inner = "Inner.jar";
 		String outer = "file:src/test/resources/Outer.jar";

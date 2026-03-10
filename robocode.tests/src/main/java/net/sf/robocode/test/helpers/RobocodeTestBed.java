@@ -9,6 +9,7 @@ package net.sf.robocode.test.helpers;
 
 
 import org.junit.After;
+import org.junit.Assume;
 import org.junit.Before;
 import robocode.control.RobotTestBed;
 
@@ -18,6 +19,27 @@ import java.io.File;
  * @author Pavel Savara (original)
  */
 public abstract class RobocodeTestBed extends RobotTestBed {
+
+    protected boolean isJdk25Compatible() {
+        return false;
+    }
+
+    private int getJavaMajorVersion() {
+        String version = System.getProperty("java.version");
+
+        if (version.startsWith("1.")) {
+            return Integer.parseInt(version.substring(2, version.lastIndexOf('.')));
+        }
+
+        int index = version.indexOf('.');
+        if (index < 0) {
+            index = version.indexOf('-');
+        }
+        if (index > 0) {
+            version = version.substring(0, index);
+        }
+        return Integer.parseInt(version);
+    }
 
     @Override
     protected void beforeInit() {
@@ -29,6 +51,10 @@ public abstract class RobocodeTestBed extends RobotTestBed {
 
     @Before
     public void before() {
+        Assume.assumeTrue(
+            "This robot integration test is not compatible with JDK 25+",
+            isJdk25Compatible() || getJavaMajorVersion() < 25
+        );
         super.before();
     }
 

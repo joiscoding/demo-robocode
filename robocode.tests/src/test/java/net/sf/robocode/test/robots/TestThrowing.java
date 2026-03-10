@@ -23,6 +23,11 @@ import robocode.control.events.BattleErrorEvent;
  */
 public class TestThrowing extends RobocodeTestBed {
 
+    @Override
+    protected boolean isJdk25Compatible() {
+        return true;
+    }
+
     @Test(expected = NullPointerException.class)
     public void run() {
         super.run();

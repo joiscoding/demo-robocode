@@ -14,8 +14,10 @@ import net.sf.robocode.host.security.RobotClassLoader;
 import net.sf.robocode.io.Logger;
 import net.sf.robocode.security.HiddenAccess;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import net.sf.robocode.util.JavaVersion;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,10 @@ public class RobotClassLoaderTest {
 	static String robotsPath;
 	final String badRobot = "tested.robots.IncludeNamespaceAttack";
 	final String goodRobot = "tested.robots.Ahead";
+
+	private void assumeSupportedJdk() {
+		Assume.assumeTrue("robotAllowedMain is not compatible with JDK 25+", JavaVersion.getJavaMajorVersion() < 25);
+	}
 
 	@BeforeClass
 	public static void init() throws IOException {
@@ -65,6 +71,8 @@ public class RobotClassLoaderTest {
 
 	@Test
 	public void robotAllowedMain() throws ClassNotFoundException {
+		assumeSupportedJdk();
+
 		RobotClassLoader cl = new RobotClassLoader(classPath, goodRobot);
 		final Class<?> c = cl.loadRobotMainClass(true);
 
