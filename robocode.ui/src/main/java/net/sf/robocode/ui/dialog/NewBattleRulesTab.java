@@ -249,7 +249,7 @@ public class NewBattleRulesTab extends JPanel {
 					}
 					if (!isValid) {
 						WindowUtil.messageError(
-								"'Number of Rounds' must be an integer value > 0.\n" + "Default value is 10.");
+								"'Number of Rounds' must be an integer value > 0.\n" + "Default value is 1.");
 						numberOfRoundsTextField.setText("" + battleProperties.getNumRounds());
 					}
 					return isValid;
@@ -446,7 +446,7 @@ public class NewBattleRulesTab extends JPanel {
 			} else if (event.getSource() == restoreDefaultsButton) {
 				battleProperties.setBattlefieldWidth(800);
 				battleProperties.setBattlefieldHeight(600);
-				battleProperties.setNumRounds(10);
+				battleProperties.setNumRounds(1);
 				battleProperties.setGunCoolingRate(0.1);
 				battleProperties.setInactivityTime(450);
 				battleProperties.setHideEnemyNames(false);
