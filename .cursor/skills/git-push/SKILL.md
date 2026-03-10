@@ -1,5 +1,5 @@
 ---
-name: push-to-fork
+name: git-push
 description: Push commits to the fork remote (joiscoding/demo-robocode). Use when the user asks to push, push changes, or deploy to their fork. Default is git push fork main.
 ---
 
