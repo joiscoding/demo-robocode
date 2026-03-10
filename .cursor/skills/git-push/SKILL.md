@@ -15,10 +15,10 @@ git push fork main
 
 ## Remote Setup
 
-| Remote | Repo | Purpose |
-|--------|------|---------|
-| `origin` | robo-code/robocode | Upstream/main repo |
-| `fork` | joiscoding/demo-robocode | User's fork (default push target) |
+| Remote   | Repo                     | Purpose                           |
+|----------|--------------------------|-----------------------------------|
+| `origin` | robo-code/robocode       | Upstream/main repo                |
+| `fork`   | joiscoding/demo-robocode | User's fork (default push target) |
 
 ## Notes
 
