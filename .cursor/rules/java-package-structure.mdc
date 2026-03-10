@@ -1,0 +1,12 @@
+---
+description: Keep Java package structure consistent by responsibility
+globs: **/*.java
+alwaysApply: false
+---
+
+# Java Package Structure
+
+- Keep controllers, services, repositories, models, and DTOs in consistent package locations.
+- Prefer package placement based on responsibility, not convenience.
+- Avoid introducing cross-layer dependencies without a clear reason.
+- When moving code, preserve package naming consistency with the surrounding module.

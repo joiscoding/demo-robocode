@@ -1,0 +1,12 @@
+---
+description: Use clear exception handling in Java code
+globs: **/*.java
+alwaysApply: false
+---
+
+# Java Error Handling
+
+- Do not swallow exceptions.
+- Either handle exceptions with meaningful recovery or rethrow them with context.
+- Prefer specific exception types over generic `Exception`.
+- Preserve the original cause when wrapping exceptions.

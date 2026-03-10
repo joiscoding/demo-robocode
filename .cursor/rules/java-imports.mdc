@@ -1,0 +1,12 @@
+---
+description: Prefer explicit Java imports at the top of the file
+globs: **/*.java
+alwaysApply: false
+---
+
+# Java Imports
+
+- Keep imports at the top of the file.
+- Avoid inline imports inside methods, inner types, or field declarations.
+- Prefer explicit imports over wildcard imports.
+- Group and sort imports consistently.
