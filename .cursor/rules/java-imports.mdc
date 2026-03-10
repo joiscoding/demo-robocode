@@ -9,4 +9,5 @@ alwaysApply: false
 - Keep imports at the top of the file.
 - Avoid inline imports inside methods, inner types, or field declarations.
 - Prefer explicit imports over wildcard imports.
+- DO NOT USE wildcard imports.
 - Group and sort imports consistently.
