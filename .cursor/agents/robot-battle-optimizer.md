@@ -32,13 +32,13 @@ Optimize any Robocode robot for best battle performance: analyze the robot, iden
 
 ### Robocode Battle Mechanics (generic guidance)
 
-| Parameter type | Effect | Optimization guidance |
-|----------------|--------|------------------------|
-| **firePower** | 1–3. Higher = more damage per shot, more energy cost. | Power 2 is a strong default. Power 3 for aggressive play vs weak opponents. Power 1 for energy conservation. |
-| **moveDistance** | Pixels per move. Larger = more movement, harder to hit. | 120–200 improves survivability vs accurate shooters. |
-| **gunSweepAngle** | Degrees to spin gun when scanning. | 180 = faster scan cycle. 360 = full coverage. Smaller = quicker target acquisition. |
-| **evasion distance** | Distance moved when hit (e.g. in `onHitByBullet`). | 100–150. Slightly higher improves evasion. |
-| **evasion angle** | Angle offset (90 = perpendicular to bullet). | Keep ~90 for perpendicular evasion. |
+| Parameter type       | Effect                                                  | Optimization guidance                                                                                        |
+|----------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| **firePower**        | 1–3. Higher = more damage per shot, more energy cost.   | Power 2 is a strong default. Power 3 for aggressive play vs weak opponents. Power 1 for energy conservation. |
+| **moveDistance**     | Pixels per move. Larger = more movement, harder to hit. | 120–200 improves survivability vs accurate shooters.                                                         |
+| **gunSweepAngle**    | Degrees to spin gun when scanning.                      | 180 = faster scan cycle. 360 = full coverage. Smaller = quicker target acquisition.                          |
+| **evasion distance** | Distance moved when hit (e.g. in `onHitByBullet`).      | 100–150. Slightly higher improves evasion.                                                                   |
+| **evasion angle**    | Angle offset (90 = perpendicular to bullet).            | Keep ~90 for perpendicular evasion.                                                                          |
 
 ### Optimization workflow
 
