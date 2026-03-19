@@ -114,20 +114,38 @@ public class Wallzzzz extends AdvancedRobot {
 		setBack(MOVE_AMOUNT);
 	}
 
+	/** Upper bound on prediction iterations (battlefield diagonal / min bullet speed is far below this). */
+	private static final int MAX_PREDICTION_TICKS = 500;
+
 	private double[] predictPosition(double enemyX, double enemyY, double enemyHeading, double enemyVelocity,
 			double firePower) {
 		double bulletSpeed = Rules.getBulletSpeed(firePower);
+		double myX = getX();
+		double myY = getY();
 		double predictedX = enemyX;
 		double predictedY = enemyY;
-		double distance = Math.hypot(predictedX - getX(), predictedY - getY());
+		double dx = predictedX - myX;
+		double dy = predictedY - myY;
+		double distSq = dx * dx + dy * dy;
+		double sinHeading = Math.sin(enemyHeading);
+		double cosHeading = Math.cos(enemyHeading);
+		double minX = ROBOT_HALF_SIZE;
+		double maxX = getBattleFieldWidth() - ROBOT_HALF_SIZE;
+		double minY = ROBOT_HALF_SIZE;
+		double maxY = getBattleFieldHeight() - ROBOT_HALF_SIZE;
 		int ticks = 0;
 
-		while ((++ticks) * bulletSpeed < distance) {
-			predictedX += Math.sin(enemyHeading) * enemyVelocity;
-			predictedY += Math.cos(enemyHeading) * enemyVelocity;
-			predictedX = limit(predictedX, ROBOT_HALF_SIZE, getBattleFieldWidth() - ROBOT_HALF_SIZE);
-			predictedY = limit(predictedY, ROBOT_HALF_SIZE, getBattleFieldHeight() - ROBOT_HALF_SIZE);
-			distance = Math.hypot(predictedX - getX(), predictedY - getY());
+		// Compare (ticks * bulletSpeed)^2 to distSq to avoid sqrt each iteration.
+		while (++ticks <= MAX_PREDICTION_TICKS) {
+			double travel = ticks * bulletSpeed;
+			if (travel * travel >= distSq) {
+				break;
+			}
+			predictedX = limit(predictedX + sinHeading * enemyVelocity, minX, maxX);
+			predictedY = limit(predictedY + cosHeading * enemyVelocity, minY, maxY);
+			dx = predictedX - myX;
+			dy = predictedY - myY;
+			distSq = dx * dx + dy * dy;
 		}
 		return new double[] { predictedX, predictedY };
 	}
