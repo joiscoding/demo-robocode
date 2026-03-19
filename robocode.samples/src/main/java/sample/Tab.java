@@ -20,14 +20,14 @@ import robocode.JuniorRobot;
  */
 public class Tab extends JuniorRobot {
 
-	private int moveDistance = 100;
-	private int gunSweepAngle = 360;
-	private int firePower = 1;
+	private int moveDistance = 150;
+	private int gunSweepAngle = 180;
+	private int firePower = 2;
 	private int hitByBulletTurn = 100;
 	private int hitByBulletAngle = 90;
-	private int bodyColor = red;
-	private int gunColor = black;
-	private int radarColor = blue;
+	private int bodyColor = orange;
+	private int gunColor = blue;
+	private int radarColor = white;
 
 	/**
 	 * The main run method - Implements a seesaw movement pattern
